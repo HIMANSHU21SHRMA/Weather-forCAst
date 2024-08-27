@@ -148,18 +148,91 @@ font-size: 0.8rem;
     height: 100%;
     background-color: #000000e0;
     width: 75%;
-    padding: 10px;
+    padding: 15px 20px 0 10px;
 }
 .dashbord{
     height: 60%;
     padding: 20px;
     border-radius: 30px;
     background-color: #434040;
-
-
-
 }
 .dashbord h2{
+    margin-left: 10px;
     font-size: 1rem;
     color: #ffffffba;
+}
+.upper-sec{
+    width: 100%;
+    height: 45%;
+    display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.air-index, .sunrise-set{
+    margin-top: 30px;
+        height: 100%;
+        width: 49%;
+        background: #00000014;
+        border-radius: 14px;
+}
+.air-condtion{
+    height: 3vh;
+    justify-content: space-between;
+    padding:0 20px;
+    display: flex;
+   align-items: center;
+}
+
+.air-condtion h2, .sunrise-set h2{
+    font-size: 0.7rem;
+    color: #ffffffba;
+}
+.air-condtion p{
+    margin-top: 7px;
+ font-size: 0.6rem;
+   background: red;
+   padding: 3px 7px;
+   border-radius: 20px;
+
+}
+.air-details ,.sunrise-set-details{
+    height: calc(100% - 3vh);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.air-condtion-details{
+    padding: 0 20px 0 30px;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+}
+.air-condtion-details img{
+    height: 2rem;
+}
+.air-condtion-details p, .rise-details p, .set-details p{
+  font-size: 0.6rem;
+  margin-bottom: 9px;
+  color: #ffffff88;
+
+}
+.air-condtion-details h3 ,.rise-details h3, .set-details h3{
+  font-size: 1.1rem;
+
+}
+.rise ,.set{
+    height: 100%;
+    width: 50%;
+    padding:0 20px;
+    display: flex;
+   gap: 20px;
+    align-items: center;
+    /* background: red; */
+}
+.rise-img ,.set-img{
+    width: 30%;
+    /* background: red; */
+}
+.rise-img img, .set-img img{
+    width: 100%;
 }
