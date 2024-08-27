@@ -40,10 +40,9 @@ nav{
     padding-left: 0.3rem;
     border: none;
 }
-.search-box p{
+.search-box img{
   padding-left: 6px;
-  font-size: 1rem;
-  color: #000;
+  height: 50%;
 }
 #location{
     height: 5vh;
@@ -67,4 +66,51 @@ font-size: 0.8rem;
     height: 100%;
     width: 75%;
     background-color: aqua;
+}
+.current-temp{
+    height: 38vh;
+    margin:12px 30px 0 30px;
+    background-color: #434040;
+    border-radius: 30px;
+    padding:10px 20px;
+
+}
+.current-temp h3{
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #ffffff7f;
+}
+.temp{
+    margin-top: 15px;
+    height: 10vh;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.temp h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+}
+.temp img{
+    margin-right: 30px;
+    height: 100%;
+}
+#condition{
+    margin-top: 13px;
+    padding-bottom: 15px;
+    font-size: 0.6rem;
+   border-bottom:1px solid #ffffff7a;
+}
+.area-day{
+    height: 60px;
+    align-content: center;
+}
+.day , .area{
+    margin-top: 6px;
+}
+#day , #area{
+    font-size: 0.8rem;
+   color: #ffffffa6;
 }
