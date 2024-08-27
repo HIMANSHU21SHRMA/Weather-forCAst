@@ -75,6 +75,15 @@ font-size: 0.8rem;
     padding:10px 20px;
 
 }
+.this-week{
+    height: 33vh;
+    margin:12px 30px 10px 30px;
+    background-color: #434040;
+    border-radius: 30px;
+    padding:10px 20px;
+
+}
+
 .current-temp h3{
     margin-top: 15px;
     font-size: 1rem;
@@ -113,4 +122,24 @@ font-size: 0.8rem;
 #day , #area{
     font-size: 0.8rem;
    color: #ffffffa6;
+}
+#outer{
+    font-size: 1rem;
+    color: #ffffffdd;
+    margin: 20px 0 20px 30px;
+}
+.row{
+    height: 4vh;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.row img{
+    height: 120%;
+}
+.row p{
+    font-size: 0.8rem;
+    color: #ffffffd0;
 }
