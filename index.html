@@ -9,15 +9,19 @@
 <body>
     <nav>
         <h1>WEATHER UPDATE...</h1>
-        <input type="search">
-        <button>Current Location</button>
+        <div class="search-box">
+            <p>@</p>
+        <input type="search" id="search-input" placeholder="Seaech City...">
+    </div>
+        <div class="buttons">
+        <button id="dark-light">SWITCH</button>
+        <button id="location">Current Location</button>
+    </div>
     </nav>
-
-    <main>
-
+    <main class="main-cnt">
+    <section class="left-sec"></section>
+    <section class="right-sec"></section>
     </main>
-
-
     <script src="script.js"></script>
 </body>
 </html>
