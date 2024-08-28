@@ -148,11 +148,11 @@ font-size: 0.8rem;
     height: 100%;
     background-color: #000000e0;
     width: 75%;
-    padding: 15px 20px 0 10px;
+    padding: 15px 40px 0 10px;
 }
 .dashbord{
     height: 60%;
-    padding: 20px;
+    padding:20px 40px;
     border-radius: 30px;
     background-color: #434040;
 }
@@ -161,12 +161,15 @@ font-size: 0.8rem;
     font-size: 1rem;
     color: #ffffffba;
 }
-.upper-sec{
+.upper-sec , .lower-sec{
     width: 100%;
     height: 45%;
     display: flex;
    align-items: center;
    justify-content: space-between;
+}
+.lower-sec{
+    margin-top: 10px;
 }
 .air-index, .sunrise-set{
     margin-top: 30px;
@@ -175,10 +178,13 @@ font-size: 0.8rem;
         background: #00000014;
         border-radius: 14px;
 }
+.sunrise-set-title{
+    margin-top: 8px;
+}
 .air-condtion{
     height: 3vh;
     justify-content: space-between;
-    padding:0 20px;
+    padding: 13px 20px;
     display: flex;
    align-items: center;
 }
@@ -210,7 +216,8 @@ font-size: 0.8rem;
 .air-condtion-details img{
     height: 2rem;
 }
-.air-condtion-details p, .rise-details p, .set-details p{
+
+.air-condtion-details p, .rise-details p, .set-details p,.temp-feel p, .pressure p, .humidity p, .visibility p{
   font-size: 0.6rem;
   margin-bottom: 9px;
   color: #ffffff88;
@@ -229,10 +236,30 @@ font-size: 0.8rem;
     align-items: center;
     /* background: red; */
 }
-.rise-img ,.set-img{
-    width: 30%;
-    /* background: red; */
-}
+
 .rise-img img, .set-img img{
+    width: 30px;
+    margin-top: 10px;
+}
+.temp-feel, .pressure, .humidity, .visibility{
+    height: 80%;
+    width: 23%;
+    background: #00000014;
+    border-radius: 20px;
+    padding:10px 20px;
+}
+.temp-details, .visibility-details, .humidity-details, .pressure-details{
+    display: flex;
+    align-items: center;
+    padding:0 20px 0 10px;
+    justify-content: space-between;
+    height: 80%;
     width: 100%;
+}
+.temp-details i, .temp-details h3, .visibility-details i, .visibility-details h3, .humidity-details h3, .pressure-details h3{
+    font-size: 1.4rem;
+    color: #ffffffc0;
+}
+.humidity-details img ,.pressure-details img{
+    height: 30px;
 }

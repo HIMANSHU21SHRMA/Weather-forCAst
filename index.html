@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEATHER APP</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/dead64de13.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav>
@@ -15,7 +16,8 @@
     </div>
         <div class="buttons">
         <button id="dark-light">SWITCH</button>
-        <button id="location">Current Location</button>
+<i class="fa-solid fa-location-crosshairs"></i>
+<button id="location">Current Location</button>
     </div>
     </nav>
     <main class="main-cnt">
@@ -100,7 +102,7 @@
             <div class="sunrise-set-details">
                 <div class="rise">
                     <div class="rise-img">
-                        <img src="images/clear.png" alt="">
+                        <img src="images/sun-svgrepo-com.svg" alt="">
                     </div>
                     <div class="rise-details">
                         <p>Sunrise</p>
@@ -110,7 +112,7 @@
                 </div>
                 <div class="set">
                     <div class="set-img">
-                        <img src="images/humidity.png" alt="">
+                        <img src="images/moon-svgrepo-com.svg" alt="">
                     </div>
                     <div class="set-details">
                         <p>Sunset</p>
@@ -122,7 +124,38 @@
 
         </div>
         <div class="lower-sec">
-
+            <div class="temp-feel">
+             <p>Feels Like</p>
+            <div class="temp-details">
+               <i class="fa-solid fa-temperature-low"></i>
+               
+                <h3>2&deg;c</h3>
+            </div>
+            </div>
+            <div class="visibility">
+                <p>Visibility</p>
+                <div class="visibility-details">
+                    <i class="fa-solid fa-eye"></i>
+                    
+                     <h3>10Km</h3>
+                 </div>
+            </div>
+            <div class="humidity">
+                <p>Humidity</p>
+                <div class="humidity-details">
+                    <img src="images/humidity-svgrepo-com.svg" alt="" >
+                     <h3>81%</h3>
+                 </div>
+    
+            </div>
+            <div class="pressure">
+                <p>Pressure</p>
+                <div class="pressure-details">
+                    <img src="images/pressure.png" alt="" >
+                     <h3>81%</h3>
+                 </div>
+    
+            </div>
         </div>
         </div>
     </section>
