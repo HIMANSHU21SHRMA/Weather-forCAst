@@ -8,6 +8,7 @@ html , body{
     width: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     color: #fff;
+    
 }
 nav{
     height: 10vh;
@@ -148,6 +149,8 @@ font-size: 0.8rem;
     height: 100%;
     background-color: #000000e0;
     width: 75%;
+    overflow-y: scroll;
+    overflow-x: hidden;
     padding: 15px 40px 0 10px;
 }
 .dashbord{
@@ -156,7 +159,7 @@ font-size: 0.8rem;
     border-radius: 30px;
     background-color: #434040;
 }
-.dashbord h2{
+.dashbord h2, .full-day h3{
     margin-left: 10px;
     font-size: 1rem;
     color: #ffffffba;
@@ -262,4 +265,34 @@ font-size: 0.8rem;
 }
 .humidity-details img ,.pressure-details img{
     height: 30px;
+}
+#today-title{
+    margin: 10px;
+}
+.full-day{
+    padding: 10px 5px;
+    height: 300px;
+    width: 100%;
+  
+
+}
+.onerow{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.card{
+    background-color: #434040;
+    height: 130px;
+    border-radius: 20px;
+    width: 100px;
+    padding: 10px 20px;
+
+}
+.card img{
+    height: 60px;
+}
+.card p{
+    font-size: 0.9rem;
+    margin-left: 19px;
 }
