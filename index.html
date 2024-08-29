@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEATHER APP</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/dead64de13.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/dead64de13.js" crossorigin="anonymous"></script>    
+
 </head>
 <body>
-    <nav>
+    <nav> 
         <h1>WEATHER UPDATE...</h1>
         <div class="search-box">
             <img src="images/search.png" alt="search png">
-        <input type="search" id="search-input" placeholder="Seaech City...">
+        <input type="search" id="search-input" placeholder="Search City...">
     </div>
         <div class="buttons">
-        <button id="dark-light">SWITCH</button>
-<i class="fa-solid fa-location-crosshairs"></i>
-<button id="location">Current Location</button>
+          <label class="switch">
+            <input type="checkbox" class="switch-input">
+            <span class="switch-slider"></span>
+          </label>     
+<button id="location"><i class="fa-solid fa-location-crosshairs"></i>Current Location</button>
     </div>
     </nav>
     <main class="main-cnt">
@@ -25,13 +28,15 @@
         <div class="current-temp">
          <h3>Now</h3>
          <div class="temp">
-            <h1>5&deg;c</h1>
-            <img src="images/clouds.png" alt="">
+            <h1 id="current-temperature">5&deg;c</h1>
+            <img src="images/clouds.png" alt="" id="current-temperature-img">
          </div>
          <p id="condition">CLODUS</p>
          <div class="area-day">
-            <div class="day"><p id="day">WEDNESDAY</p></div>
-            <div class="area"><p id="area">BHILWARA</p></div>
+
+<div class="day"><p id="day"><i class="fa-regular fa-calendar"></i> <span id="current-temper-day">WEDNESDAY</span> </p></div>
+
+<div class="area"><p id="area"><i class="fa-solid fa-location-dot"></i> <span id="current-temper-location">BHILWARA</span> </p></div>
             
          </div>
         </div>
@@ -81,17 +86,17 @@
                 <div class="air-details">
 
                 <div class="air-condtion-details" id="air-img"><img src="images/wind.png" alt="wind image"></div>
-                 <div class="air-condtion-details" id="air-pm"><p>PM2.5</p>
-                <h3>3.90</h3>
+                 <div class="air-condtion-details"><p>PM2.5</p>
+                <h3  id="air-pm">3.90</h3>
                 </div>
-                 <div class="air-condtion-details" id="air-pm"><p>PM2.5</p>
-                <h3>3.90</h3>
+                 <div class="air-condtion-details"><p>PM2.5</p>
+                <h3 id="air-SO">3.90</h3>
                 </div>
-                 <div class="air-condtion-details" id="air-pm"><p>PM2.5</p>
-                <h3>3.90</h3>
+                 <div class="air-condtion-details"><p>PM2.5</p>
+                <h3  id="air-NO">3.90</h3>
                 </div>
-                 <div class="air-condtion-details" id="air-pm"><p>PM2.5</p>
-                <h3>3.90</h3>
+                 <div class="air-condtion-details"><p>PM2.5</p>
+                <h3 id="air-O">3.90</h3>
                 </div>
             </div>
             </div>
@@ -106,7 +111,7 @@
                     </div>
                     <div class="rise-details">
                         <p>Sunrise</p>
-                        <h3>6:45 AM</h3>
+                        <h3 id="Sunrise-time">6:45 AM</h3>
                     </div>
 
                 </div>
@@ -116,7 +121,7 @@
                     </div>
                     <div class="set-details">
                         <p>Sunset</p>
-                        <h3>8:45 PM</h3>
+                        <h3 id="Sunset-time">8:45 PM</h3>
                     </div>
                 </div>
             </div>
@@ -129,7 +134,7 @@
             <div class="temp-details">
                <i class="fa-solid fa-temperature-low"></i>
                
-                <h3>2&deg;c</h3>
+                <h3 id="feel-temper">2&deg;c</h3>
             </div>
             </div>
             <div class="visibility">
@@ -137,14 +142,14 @@
                 <div class="visibility-details">
                     <i class="fa-solid fa-eye"></i>
                     
-                     <h3>10Km</h3>
+                     <h3  id="visibility-dist">10Km</h3>
                  </div>
             </div>
             <div class="humidity">
                 <p>Humidity</p>
                 <div class="humidity-details">
                     <img src="images/humidity-svgrepo-com.svg" alt="" >
-                     <h3>81%</h3>
+                     <h3 id="humidity-percent">81%</h3>
                  </div>
     
             </div>
@@ -152,7 +157,7 @@
                 <p>Pressure</p>
                 <div class="pressure-details">
                     <img src="images/pressure.png" alt="" >
-                     <h3>81%</h3>
+                     <h3 id="perssure-val">81PIS</h3>
                  </div>
     
             </div>
@@ -250,4 +255,5 @@
     </main>
     <script src="script.js"></script>
 </body>
+
 </html>

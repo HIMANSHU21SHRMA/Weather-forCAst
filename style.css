@@ -21,6 +21,56 @@ nav{
 
 }
 
+/* Container for the switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+  
+  /* Hide the default checkbox */
+  .switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Slider */
+  .switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #434040;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  /* The circle inside the slider */
+  .switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: rgba(95, 95, 95, 0.585);
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  /* When the checkbox is checked, move the slider */
+  .switch-input:checked + .switch-slider {
+    background-color: #c8c7c7;
+  }
+  
+  .switch-input:checked + .switch-slider:before {
+    transform: translateX(26px);
+  }
+  
 .search-box{
     height: 4.5vh;
     width: 21rem;
@@ -46,9 +96,12 @@ nav{
   padding-left: 6px;
   height: 50%;
 }
+#location i{
+    margin-right: 10px;
+}
 #location{
     height: 5vh;
-width: 8rem;
+width: 9rem;
 border-radius: 20px;
 font-size: 0.8rem;
 
@@ -107,6 +160,10 @@ font-size: 0.8rem;
     margin-right: 30px;
     height: 100%;
 }
+.invert{
+    color: #000;
+    background-color: #efebebdd;
+}
 #condition{
     margin-top: 13px;
     padding-bottom: 15px;
@@ -123,6 +180,9 @@ font-size: 0.8rem;
 #day , #area{
     font-size: 0.8rem;
    color: #ffffffa6;
+}
+#day i, #area i{
+    margin-right: 5px;
 }
 #outer{
     font-size: 1rem;
@@ -175,7 +235,7 @@ font-size: 0.8rem;
     margin-top: 10px;
 }
 .air-index, .sunrise-set{
-    margin-top: 30px;
+        margin-top: 30px;
         height: 100%;
         width: 49%;
         background: #00000014;
@@ -211,7 +271,7 @@ font-size: 0.8rem;
     justify-content: space-between;
 }
 .air-condtion-details{
-    padding: 0 20px 0 30px;
+    padding: 0 20px 0 15px;
     height: 100%;
     text-align: center;
     align-content: center;
