@@ -139,7 +139,8 @@ font-size: 0.8rem;
 .this-week{
     height: 33vh;
     box-shadow: 2px 2px 2px #000000e2;
-
+  overflow-y: scroll;
+  scrollbar-width: none;
     margin:12px 30px 10px 30px;
     background-color: #434040;
     border-radius: 30px;
@@ -203,7 +204,8 @@ font-size: 0.8rem;
     margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 25px;
 
 }
 .row img{
@@ -270,7 +272,7 @@ font-size: 0.8rem;
 .air-condtion p{
     margin-top: 7px;
  font-size: 0.6rem;
-   background: red;
+   background: rgba(20, 239, 20, 0.463);
    padding: 3px 7px;
    border-radius: 20px;
 
