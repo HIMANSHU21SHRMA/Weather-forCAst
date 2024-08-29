@@ -8,7 +8,6 @@ html , body{
     width: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     color: #fff;
-    
 }
 nav{
     height: 10vh;
@@ -20,7 +19,17 @@ nav{
     justify-content: space-between;
 
 }
-
+#unite{
+    height: 3vh;
+    width: 6rem;
+    border: none;
+    border-radius: 6px;
+    outline: 0;
+    background: #434040;
+    color: #ffffffb3;
+    font-size: 0.7rem;
+    margin: 0 5px;
+}
 /* Container for the switch */
 .switch {
     position: relative;
@@ -212,7 +221,9 @@ font-size: 0.8rem;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 15px 40px 0 10px;
+    scrollbar-width: none;        
 }
+
 .dashbord{
     height: 60%;
     padding:20px 40px;
