@@ -202,7 +202,9 @@ font-size: 0.8rem;
 .row{
     height: 4vh;
     margin-top: 10px;
+    margin-right: -30px;
     display: flex;
+    text-align: center;
     align-items: center;
     /* justify-content: space-between; */
     gap: 25px;
@@ -332,9 +334,14 @@ font-size: 0.8rem;
     height: 80%;
     width: 100%;
 }
-.temp-details i, .temp-details h3, .visibility-details i, .visibility-details h3, .humidity-details h3, .pressure-details h3{
+.temp-details i, .visibility-details i{
     font-size: 1.4rem;
     color: #ffffffc0;
+}
+.temp-details h3, .visibility-details h3, .humidity-details h3,  .pressure-details h3{
+    font-size: 0.9rem;
+    color: #ffffffc0;
+
 }
 .humidity-details img ,.pressure-details img{
     height: 30px;
@@ -349,7 +356,7 @@ font-size: 0.8rem;
   
 
 }
-.onerow{
+.onerow, .torow{
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -357,6 +364,11 @@ font-size: 0.8rem;
 .card{
     background-color: #434040;
     height: 130px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+ text-align: center;
     border-radius: 20px;
     width: 100px;
     padding: 10px 20px;
@@ -367,5 +379,5 @@ font-size: 0.8rem;
 }
 .card p{
     font-size: 0.9rem;
-    margin-left: 19px;
+    /* margin-left: 19px; */
 }

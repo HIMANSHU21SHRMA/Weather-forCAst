@@ -47,8 +47,8 @@ const currentWeather = async() => {
          const response = await fetch(apiUrl);
          const data = await response.json();
         //  console.log(data.name);
-        console.log(data);
-        console.log(data.main.feels_like);
+        // console.log(data);
+        // console.log(data.main.humidity);
         
         // console.log(data.sys.sunset);
         let sunrise =new Date(data.sys.sunrise * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -61,7 +61,7 @@ const currentWeather = async() => {
         let timestamp = data.dt;
         let date = new Date(timestamp * 1000);
         // console.log(convetor.value);
-       let temp = data.main.temp
+        let temp = data.main.temp
         let tempUnit;
         let feelsTempr = data.main.feels_like;
 
@@ -79,7 +79,36 @@ const currentWeather = async() => {
             feelsTempr = Math.round(val2);
             tempUnit = "F"
         }
+        // feelsec
    feelTemper.innerHTML = `${feelsTempr}&deg;${tempUnit}`
+
+//    visibility
+  let visib = data.visibility;
+  let visibVal;
+  let visibUnit;
+
+  if (convetor.value === 'k/c') {
+      visibVal = visib / 1000
+      visibUnit = 'Km'
+  }
+  else if (convetor.value === 'm/f') {
+       visibVal = Math.round(visib * 0.000621371);
+       visibUnit = 'mile'
+  }
+
+  visibilityDistance.innerHTML = `${visibVal} ${visibUnit}`
+
+//   humidity sec
+let humper = data.main.humidity
+  humidityPercent.innerHTML = `${humper}%`;
+
+//   presure sec
+let prser = data.main.pressure;
+perssureVal.innerHTML = `${prser}hPa`
+
+
+//    current weatehr
+
        let image = data.weather[0].main;
        let city = data.name;
        let tempDetails = data.weather[0].description
@@ -88,6 +117,7 @@ const currentWeather = async() => {
        
   gettingCurrentTemp(temp, city,tempDetails, weekDay, image, tempUnit)
   getcity(city)
+  weekForecast(city)
 
     } catch (error) {
         console.error('error in currentWeather', error);
@@ -100,73 +130,138 @@ currentWeather()
 // addevent listner for changes in units
 convetor.addEventListener('change',() => {
     currentWeather();
-     weekForeCast();
-})
+    //  weekForeCast();
+})  
 ;
 
 // Fetching 5-day weather forecast data
-const weekForeCast = async () => {
+const weekForecast = async (city) => {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+
     try {
-        const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=udaipur&appid=${apiKey}&units=metric`;
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        const forecastContainer = document.querySelector('#forecast-container');
-        forecastContainer.innerHTML = ''; // Clear any existing content
+        const forecastContainer = document.getElementById('forecast-container');
+        forecastContainer.innerHTML = ''; // Clear previous content
 
-        // Process and display the forecast for 5 days
-        const dailyForecasts = {};
-        data.list.forEach(forecast => {
-            const date = new Date(forecast.dt * 1000);
-            const day = date.toISOString().split('T')[0]; 
+        const tempUnit = convetor.value.includes('c') ? 'C' : 'F';
+        const speedUnit = convetor.value.includes('k') ? 'km/h' : 'mph';
 
-            if (!dailyForecasts[day]) {
-                dailyForecasts[day] = forecast; 
-            }
-        });
+        // Extract daily data for each day at 12:00 (noon)
+        const dailyData = data.list.filter(item => item.dt_txt.includes("12:00:00"));
 
-        const days = Object.keys(dailyForecasts).slice(0, 5);
+        dailyData.forEach(day => {
+            const date = new Date(day.dt_txt);
+            const formattedDate = date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' }); // Example: 5 Mar
+            const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
+            let dayTemp = Math.round(day.main.temp);
+            const icon = day.weather[0].icon;
 
-        days.forEach(day => {
-            const forecast = dailyForecasts[day];
-            const date = new Date(forecast.dt * 1000);
-            let dayTemp = forecast.main.temp; 
-          
+            // Convert temperature to Fahrenheit if needed
             if (convetor.value === 'm/f') {
-                // Convert Celsius to Fahrenheit
-                dayTemp = Math.round((dayTemp * 9/5) + 32);
-                // tempUnit = "F";
-            } else if (convetor.value === 'k/c') {
-                dayTemp = Math.round(dayTemp)
-          
+                dayTemp = Math.round(dayTemp * 9 / 5 + 32);
             }
-            const weekDay = weekDayName[date.getDay()]; // Day of the week
-            const dayDate = `${date.getDate()} ${monthName[date.getMonth()]}`; // Date and month
-            const weatherImage = forecast.weather[0].main.toLowerCase(); 
-            // console.log(weatherImage);
-            // Weather condition image (e.g., rain)
-             
-            // Create the row and populate it
+
+            // Create a row for daily forecast
             const row = document.createElement('div');
             row.classList.add('row');
 
             row.innerHTML = `
-                <img src="images/${weatherImage}.png" alt="${weatherImage}">
-                <p class="day-temp">${dayTemp}&deg;</p>
-                <p class="day-date">${dayDate}</p>
-                <p class="week-day">${weekDay}</p>
+                <img src="http://openweathermap.org/img/wn/${icon}.png" alt="${day.weather[0].description}">
+                <p class="day-temp">${dayTemp}&deg;${tempUnit}</p>
+                <p class="day-date">${formattedDate}</p>
+                <p class="week-day">${dayOfWeek}</p>
             `;
 
-            // Append the row to the forecast container
             forecastContainer.appendChild(row);
         });
 
+        // Extract 3-hour interval data for the entire day
+        const allHourlyData = data.list.filter(item => {
+            const hour = new Date(item.dt_txt).getHours();
+            return hour === 0 || hour === 3 || hour === 6 || hour === 9 || hour === 12 || hour === 15 || hour === 18 || hour === 21;
+        });
+
+        // Ensure we have 8 data points
+        const hourlyData = allHourlyData.slice(0, 8);
+
+        // First row: Temperature at 3-hour intervals
+        const tempRow = document.createElement('div');
+        tempRow.classList.add('onerow');
+
+        hourlyData.forEach(hour => {
+            const hourTime = new Date(hour.dt_txt).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true }).replace(':00', '');
+            let hourTemp = Math.round(hour.main.temp);
+            const hourIcon = hour.weather[0].icon;
+
+            // Convert temperature to Fahrenheit if needed
+            if (convetor.value === 'm/f') {
+                hourTemp = Math.round(hourTemp * 9 / 5 + 32);
+            }
+
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            card.innerHTML = `
+                <h3>${hourTime}</h3>
+                <img src="http://openweathermap.org/img/wn/${hourIcon}.png" alt="${hour.weather[0].description}">
+                <p>${hourTemp}&deg;${tempUnit}</p>
+            `;
+
+            tempRow.appendChild(card);
+        });
+
+        // Second row: Wind speed at 3-hour intervals
+        const windRow = document.createElement('div');
+        windRow.classList.add('torow');
+
+        hourlyData.forEach(hour => {
+            const hourTime = new Date(hour.dt_txt).toLocaleTimeString('en-US', { hour: 'numeric', hour12: true }).replace(':00', '');
+            let windSpeed = Math.round(hour.wind.speed);
+            const windIcon = 'wind-icon.png'; // Placeholder for wind direction icon
+
+            // Convert wind speed to km/h if needed
+            if (convetor.value === 'm/f') {
+                windSpeed = Math.round(windSpeed * 3.6);
+            }
+
+            // Determine wind direction
+            const windDirection = getWindDirection(hour.wind.deg);
+
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            card.innerHTML = `
+                <h3>${hourTime}</h3>
+                <p>(${windDirection})</p>
+                <p>${windSpeed} ${speedUnit}</p>
+            `;
+
+            windRow.appendChild(card);
+        });
+
+        const fullDay = document.querySelector('.full-day');
+        fullDay.innerHTML = '';
+        fullDay.appendChild(tempRow);
+        fullDay.appendChild(windRow);
+
     } catch (error) {
-        console.error('Error in weekForeCast:', error);
+        console.error("Error fetching the weather data: ", error);
     }
 }
-weekForeCast();
 
+// Helper function to determine wind direction
+const getWindDirection = (degree) => {
+    if (degree >= 337.5 || degree < 22.5) return 'N';
+    if (degree >= 22.5 && degree < 67.5) return 'NE';
+    if (degree >= 67.5 && degree < 112.5) return 'E';
+    if (degree >= 112.5 && degree < 157.5) return 'SE';
+    if (degree >= 157.5 && degree < 202.5) return 'S';
+    if (degree >= 202.5 && degree < 247.5) return 'SW';
+    if (degree >= 247.5 && degree < 292.5) return 'W';
+    if (degree >= 292.5 && degree < 337.5) return 'NW';
+}
 
 // todays Highlights
 // air quality
