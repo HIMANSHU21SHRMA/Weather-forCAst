@@ -136,7 +136,8 @@ perssureVal.innerHTML = `${prser}hPa`
 //    current weatehr
 
        let image = data.weather[0].main;
-       let city = data.name;
+       let cityName = data.name; // Renamed from 'city' to 'cityName'
+
        let tempDetails = data.weather[0].description
       let weekDay = weekDayName[date.getDay()]
     //    console.log(weekday);
@@ -414,6 +415,8 @@ let monthName = [
 // }
 
 // fetchWeather();
+currentWeather(urlCity)
+
 
 
 // loader
@@ -445,3 +448,23 @@ window.addEventListener("load", () => {
     }
 });
 
+// current locaiton
+currentLocation.addEventListener('click', () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            const city = await getCityFromCoords(lat, lon);
+            if (city) {
+                urlCity = city;
+                currentWeather(urlCity);
+            }
+        }, (error) => {
+            console.error('Error obtaining geolocation:', error);
+            alert('Unable to retrieve your location.');
+        });
+    } else {
+        alert('Geolocation is not supported by this browser.');
+    }
+});
