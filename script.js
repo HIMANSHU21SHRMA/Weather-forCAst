@@ -2,10 +2,34 @@
 const apiKey = '484379af6c976a7cbf9fc60daef310d5';
 // navigation
 const searchBar = document.querySelector('#search-input');
+const searchbtn = document.querySelector('#search-btn');
 const modeChange = document.querySelector('.switch-input');
 const currentLocation = document.querySelector('#location');
 const convetor = document.querySelector('#unite')
+let urlCity = "Jaipur";
 
+searchbtn.addEventListener("click", () => {
+    const cityval = searchBar.value.trim();
+    if (cityval) {
+        urlCity = cityval
+        
+    }
+    currentWeather(urlCity)
+
+})
+searchBar.addEventListener("keypress", (e) => {
+    const cityval = searchBar.value.trim();
+    if (e.key === 'Enter') {
+        
+        if (cityval) {
+            urlCity = cityval;
+
+            
+        }
+        currentWeather(urlCity)
+    }
+ 
+})
 
 // unit convert
 const unitConvert = (kelvinValue, toUnit) => {
@@ -40,10 +64,12 @@ const gettingCurrentTemp = (temp, city, tempDetails, weekDay, image,tempUnit) =>
    currentTemperatureImg.src = `images/${image}.png`;
 }
 
+
+
 // fetching current weather
-const currentWeather = async() => {
-    try {
-         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=udaipur&appid=${apiKey}`
+const currentWeather = async(city) => {
+    try {        
+         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
          const response = await fetch(apiUrl);
          const data = await response.json();
         //  console.log(data.name);
@@ -126,14 +152,14 @@ perssureVal.innerHTML = `${prser}hPa`
    
     
 }
-currentWeather()
+
+
 // addevent listner for changes in units
 convetor.addEventListener('change',() => {
-    currentWeather();
+    currentWeather(urlCity);
     //  weekForeCast();
 })  
 ;
-
 // Fetching 5-day weather forecast data
 const weekForecast = async (city) => {
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
@@ -388,3 +414,34 @@ let monthName = [
 // }
 
 // fetchWeather();
+
+
+// loader
+
+const loader = document.querySelector('.loader');
+
+// Function to check if the document is fully loaded
+function isPageFullyLoaded() {
+    return document.readyState === 'complete';
+}
+
+// Function to hide the loader with a fade-out effect
+function hideLoader() {
+    loader.classList.add('hidden');
+
+    // Wait for the fade-out transition to complete before setting display to 'none'
+    setTimeout(() => {
+        loader.style.display = 'none';
+    }, 500); // Match the duration of the transition
+}
+
+// Event listener for when the window has loaded all assets
+window.addEventListener("load", () => {
+    if (isPageFullyLoaded()) {
+        hideLoader();
+    } else {
+        // In case the 'load' event fires but assets are still loading, wait for them
+        window.addEventListener("load", hideLoader);
+    }
+});
+

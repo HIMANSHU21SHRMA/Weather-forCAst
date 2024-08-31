@@ -8,7 +8,46 @@ html , body{
     width: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
     color: #fff;
+    position: relative;
 }
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+    backdrop-filter: blur(7px); /* Blurred background */
+}
+.hidden {
+    opacity: 0; /* Fully transparent */
+    pointer-events: none; /* Prevent interaction */
+}
+.spinner {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    /* background: linear-gradient(45deg, #4a4949, #322a2a); Light gradient for a nice contrast */
+    background: transparent;
+    border: 8px solid transparent; /* Transparent border to enhance the spinner effect */
+    border-top: 8px solid #ffffff; /* Top border with a bright color */
+    /* box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); Soft light shadow for depth */
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 nav{
     height: 10vh;
     width: 100%;
